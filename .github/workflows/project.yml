@@ -15,7 +15,7 @@ jobs:
       PG_PORT: ${{ secrets.PG_PORT }}
     services:
       postgres_main:
-        image: postgres
+        image: postgres:latest
         env:
           POSTGRES_USER: ${{ env.PG_USER }}
           POSTGRES_PASSWORD: ${{ env.PG_PASSWORD }}
@@ -43,7 +43,7 @@ jobs:
       run: flake8 webpython --exclude migrations --ignore E501,F401
     
     - name: Тестирование
-      run: python/webpython/manage.py test
+      run: python webpython/manage.py test
       env:
         PG_NAME: ${{ env.PG_NAME }}
         PG_USER: ${{ env.PG_USER }}
